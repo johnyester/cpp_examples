@@ -44,7 +44,7 @@ namespace jly_tutorials
         }
     };
 
-    int main_classes(void) {
+    int main_classes() {
         Rectangle Rect;
 
         Rect.setWidth(5);

@@ -1,4 +1,87 @@
 /*
+Functions
+Iterator operations:
+advance - Advance iterator (function template )
+distance - Return distance between iterators (function template )
+begin - Iterator to beginning (function template )
+end - Iterator to end (function template )
+prev - Get iterator to previous element (function template )
+next - Get iterator to next element (function template )
+
+Iterator generators:
+back_inserter - Construct back insert iterator (function template )
+front_inserter - Constructs front insert iterator (function template )
+inserter - Construct insert iterator (function template )
+make_move_iterator - Construct move iterator (function template )
+
+Classes
+iterator - Iterator base class (class template )
+iterator_traits - Iterator traits (class template )
+
+Predefined iterators
+reverse_iterator - Reverse iterator (class template )
+move_iterator - Move iterator (class template )
+back_insert_iterator - Back insert iterator (class template )
+front_insert_iterator - Front insert iterator (class template )
+insert_iterator - Insert iterator (class template )
+istream_iterator - Istream iterator (class template )
+ostream_iterator - Ostream iterator (class template )
+istreambuf_iterator - Input stream buffer iterator (class template )
+ostreambuf_iterator - Output stream buffer iterator (class template )
+
+Category tags
+input_iterator_tag - Input iterator category (class )
+output_iterator_tag - Output iterator category (class )
+forward_iterator_tag - Forward iterator category (class )
+bidirectional_iterator_tag - Bidirectional iterator category (class )
+random_access_iterator_tag - Random-access iterator category (class )
+*/
+// inserter example
+
+#include <iostream>     // std::cout
+#include <iterator>     // std::front_inserter
+#include <list>         // std::list
+#include <algorithm>    // std::copy
+#include <vector>
+#include <deque>
+#include <list>
+#include <set>
+#include <map>
+#include <string>
+#include <iostream>
+#include <iostream>
+#include <fstream>
+#include <numeric>  // for accumulate()
+#include <iterator>  
+
+using namespace std;
+
+namespace jly_tutorials
+{
+	int main_iterator_copy() {
+		std::list<int> foo, bar;
+		for (int i = 1; i <= 5; i++)
+		{
+			foo.push_back(i); bar.push_back(i * 10);
+		}
+
+		std::list<int>::iterator it = foo.begin();
+		advance(it, 3);
+
+		// std:inserter
+		// template <class Container, class Iterator>
+		// insert_iterator<Container> inserter(Container & x, Iterator it);
+		std::copy(bar.begin(), bar.end(), std::inserter(foo, it));
+
+		std::cout << "foo contains:";
+		for (std::list<int>::iterator it = foo.begin(); it != foo.end(); ++it)
+			std::cout << ' ' << *it;
+		std::cout << '\n';
+
+		return 0;
+	}
+
+	/*
 Types of iterators:
 	Based upon the functionality of the iterators, they can be classified into five major categories:
 Input Iterators:
@@ -23,22 +106,7 @@ Random-Access Iterators:
 	They are the ones whose functionality are same as pointers.
 */
 
-#include <vector>
-#include <deque>
-#include <list>
-#include <set>
-#include <map>
-#include <string>
-#include <iostream>
-#include <iostream>
-#include <fstream>
-#include <numeric>  // for accumulate()
-#include <iterator>  
 
-using namespace std;
-
-namespace jly_tutorials
-{
 	int main_iterators()
 	{
 		vector<int> myIntVector;
@@ -74,8 +142,8 @@ namespace jly_tutorials
 		Sum of the data is 55
 		*/
 		ifstream myInt("data");
-		istream_iterator<int> iter(myInt);
-		istream_iterator<int> eos;  // end of stream iterator
+		istream_iterator<int> iter(myInt); // initialization constructor - constructs iterator associated with stream.
+		istream_iterator<int> eos;  // default constructor - constructs an end of stream iterator
 
 		cout << "Sum of the data is "
 			<< accumulate(iter, eos, 0)  // accumulate(input_iter, input_iter, value)
@@ -85,9 +153,9 @@ namespace jly_tutorials
 
 	/*
 	Forward Iterators
-		Forward iterators use only the ++ operators for navigating through a container. 
-		So a forward iterator can only go forward through a container one element at a time. 
-		Unlike input and output iterators, however, it necessarily goes through a sequence 
+		Forward iterators use only the ++ operators for navigating through a container.
+		So a forward iterator can only go forward through a container one element at a time.
+		Unlike input and output iterators, however, it necessarily goes through a sequence
 		of values in the same order each time we use it.
 	*/
 	template<typename ForwardIterator>
@@ -359,7 +427,7 @@ namespace jly_tutorials
 		}
 		std::cout << '\n';
 
-		std::list<int> l{ 1, 2, 3, 4, 5, 6};
+		std::list<int> l{ 1, 2, 3, 4, 5, 6 };
 		my_reverse(l.begin(), l.end());
 		for (auto n : l) {
 			std::cout << n << ' ';

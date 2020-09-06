@@ -6,7 +6,7 @@ namespace jly_tutorials
 {
 
 
-	void main_c14() {
+	void main_lambda_c14() {
 		// capture with initializer
 		// const auto foo = [z = x + y]() { std::cout << z << '\n'; };
 		// auto

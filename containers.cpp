@@ -81,10 +81,4 @@ namespace jly_tutorials
 		return 0;
 	}
 
-	int main_containers()
-	{
-		main_sets();
-		main_set_sorting();
-		return 0;
-	}
 }

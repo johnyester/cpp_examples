@@ -8,7 +8,7 @@
 namespace jly_tutorials
 {
 	template<typename VT, typename ... Params>
-	std::array<VT, sizeof...(Params) + 1> get_data(const VT& v1, const Params& ... params)
+	std::array<VT, sizeof...(Params) + 1> init_array_with_list(const VT& v1, const Params& ... params)
 	{
 		std::cout << v1 << std::endl;
 		return { v1, params... };
@@ -21,7 +21,7 @@ namespace jly_tutorials
 		return v1;
 	}
 	template<typename VT, typename ... P>  // variadic template
-	std::array<VT, sizeof...(P)> get_data1(const P& ... params) // param expansion
+	std::array<VT, sizeof...(P)> init_array_with_type_and_list(const P& ... params) // param expansion
 	{
 		return { params... }; // pack expansion
 	}
@@ -49,18 +49,16 @@ namespace jly_tutorials
 
 	void main_variadic_templates()
 	{
-		std::array<double, 3> data = get_data(1., 2., 3.);
+		// std::array<double, 3>
+		auto data = init_array_with_list(1., 2., 3.);
 		for (const auto& d : data)
 		{
 			std::cout << d << std::endl;
 		}
-		print_array("data",data);
+		print_array("data using init_array_with_list()",data);
 
-		std::array<double,3> data1{ 1., 2., 3. };
-
-		//TODO Doesn't work for some reason the template is not identified 
-		/*double d = get_data1(3.);
-		std::array<double, 3> data = get_data1(1., 2., 3.);*/
+		auto data1 = init_array_with_type_and_list<double>(1., 2., 3.);
+		print_array("data1 using init_array_with_type_and_list()", data1);
 
 	}
 }
