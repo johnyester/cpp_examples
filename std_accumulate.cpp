@@ -14,6 +14,38 @@ T accumulate(InputIt first, InputIt last, T init,
 	}
 
 sig of op: Type1 fun(const Type1 &a, const Type2 &b);  // i.e. type of passed args can differ
+
+https://en.cppreference.com/w/cpp/algorithm/accumulate
+Parameters
+	first, last	-	the range of elements to sum
+	init		-	initial value of the sum
+	op			-	binary operation function object that will be applied. 
+		The binary operator takes the current accumulation value a (initialized to init) 
+		and the value of the current element b.
+
+		The signature of the function should be equivalent to the following:
+			Ret fun(const Type1 &a, const Type2 &b);
+
+		The signature does not need to have const &.
+
+		The type Type1 must be such that an object of type T can be implicitly converted to Type1. 
+		The type Type2 must be such that an object of type InputIt can be dereferenced and then implicitly converted to Type2. 
+		The type Ret must be such that an object of type T can be assigned a value of type Ret.â€‹
+
+Type requirements
+	-InputIt must meet the requirements of LegacyInputIterator.
+	-T must meet the requirements of CopyAssignable and CopyConstructible.
+
+Return value
+	1) The sum of the given value and elements in the given range.
+	2) The result of left fold of the given range over op
+
+Notes
+std::accumulate performs a left fold. 
+
+In order to perform a right fold, 
+	one must reverse the order of the arguments to the binary operator, 
+	and use reverse iterators.
 */
 
 // monoids
@@ -24,8 +56,8 @@ sig of op: Type1 fun(const Type1 &a, const Type2 &b);  // i.e. type of passed ar
 //	e is an element of M, neutral for op on both left and right side
 //Integers form a Monoid under addition with the neutral element zero
 //Integers form a Monoid under multiplication with the neutral element one
-//Sequential containers form a Monoid under concatenation(strings, vectors…)
-//Associative containers form a Monoid under union (maps, sets…)
+//Sequential containers form a Monoid under concatenation(strings, vectorsâ€¦)
+//Associative containers form a Monoid under union (maps, setsâ€¦)
 //  addition, multiplication on integers
 //	concatenation on strings
 //	union on sets
@@ -116,7 +148,7 @@ namespace jly_tutorials
 	// 
 	/* https://accu.org/index.php/articles/2182
 	Folding is a highly generic operation available through std::accumulate.
-	Paul Keir goes beyond reduction, with the help of C++14’s polymorphic lambdas.
+	Paul Keir goes beyond reduction, with the help of C++14â€™s polymorphic lambdas.
 
 	fold: an elementary reduction operator from functional programming
 	*/

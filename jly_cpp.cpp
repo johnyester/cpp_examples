@@ -69,9 +69,10 @@ namespace jly_tutorials
 			main_transform();
 			main_accumulate();
 			main_accumulate_fold();
+			main_get_cwd();
+			main_csvwriter();
 		}
-		main_get_cwd();
-		main_csvwriter();
+		main_containers();
 		return 0;
 	}
 }

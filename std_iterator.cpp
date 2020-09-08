@@ -1,17 +1,17 @@
 /*
 Functions
 Iterator operations:
-advance - Advance iterator (function template )
+advance - Advance iterator (function template ) - moves iterator to point to different element.
 distance - Return distance between iterators (function template )
 begin - Iterator to beginning (function template )
 end - Iterator to end (function template )
 prev - Get iterator to previous element (function template )
-next - Get iterator to next element (function template )
+next - Get iterator to next element (function template ) - leaves original iterator unchanged
 
 Iterator generators:
-back_inserter - Construct back insert iterator (function template )
-front_inserter - Constructs front insert iterator (function template )
-inserter - Construct insert iterator (function template )
+back_inserter - Construct back insert iterator (function template ) - works on containers with push_back defined.
+front_inserter - Constructs front insert iterator (function template ) - only defined for list & deque
+inserter - Construct insert iterator (function template ) - used with sets; most containers support usage: inserter( Container& c, typename Container::iterator i );
 make_move_iterator - Construct move iterator (function template )
 
 Classes
@@ -20,10 +20,10 @@ iterator_traits - Iterator traits (class template )
 
 Predefined iterators
 reverse_iterator - Reverse iterator (class template )
-move_iterator - Move iterator (class template )
-back_insert_iterator - Back insert iterator (class template )
-front_insert_iterator - Front insert iterator (class template )
-insert_iterator - Insert iterator (class template )
+move_iterator - Move iterator (class template ) - converts the value returned by the underlying iterator into an rvalue
+back_insert_iterator - Back insert iterator (class template ) - appends to a container
+front_insert_iterator - Front insert iterator (class template ) - prepends elements to a container
+insert_iterator - Insert iterator (class template ) - inserts elements into a container at the position pointed to by the supplied iterator.
 istream_iterator - Istream iterator (class template )
 ostream_iterator - Ostream iterator (class template )
 istreambuf_iterator - Input stream buffer iterator (class template )

@@ -25,12 +25,19 @@ print(a);
 #include <iterator>
 #include <vector>
 #include <set>
+#include <map>
+#include <vector>
+#include <deque>
+#include <tuple>
+#include <ctime>        // std::time
+#include <cstdlib>      // std::rand, std::srand
+#include <random>
 #include <stdlib.h>
 #include <fstream>
-#include <vector>
 #include <utility> // std::pair
 #include <direct.h> // _getcwd()
 #include <filesystem> // std::filesystem::current_path()
+#include <cassert>
 
 
 namespace jly_tutorials 
@@ -168,5 +175,7 @@ namespace jly_tutorials
 	int main_copy_vec2csv();
 	int main_csvwriter();  // CSVWriter()
 	void main_get_cwd();
+	//
+	void main_containers();
 }
 #endif
